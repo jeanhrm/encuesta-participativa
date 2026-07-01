@@ -9,6 +9,11 @@ class InstitucionesSeeder extends Seeder
 {
     public function run(): void
     {
+        
+        if (DB::table('instituciones')->count() > 0) {
+        return; // Ya están cargadas, no hacer nada
+    }
+    
         $csv = database_path('data/instituciones.csv');
         $rows = array_map('str_getcsv', file($csv));
         $header = array_shift($rows);
